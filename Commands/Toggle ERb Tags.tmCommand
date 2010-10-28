@@ -23,9 +23,9 @@ end
 input = $stdin.read
 
 # snippetize output
-lines       = input.to_a
+lines       = input.lines.to_a
 lines[line] = e_sn(lines[line][0...col]) + "${0}" + e_sn(lines[line][col..-1])
-output      = lines.enum_with_index.inject(String.new) do |out, (l, i)|
+output      = lines.to_enum.with_index.inject(String.new) do |out, (l, i)|
   i == line ? out + l : out + e_sn(l)
 end
 
